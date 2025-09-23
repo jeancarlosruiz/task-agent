@@ -2,6 +2,19 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { HomeIcon } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +42,33 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        {children}
+        <main className="relative">
+          <SidebarProvider>
+            <Sidebar>
+              <SidebarHeader>
+
+                <SidebarMenu>
+                  {[{ href: "/", label: "Home" }].map((link) => {
+                    return (
+                      <SidebarMenuItem key={link.href}>
+                        <SidebarMenuButton>
+                          <HomeIcon />
+                          <span>{link.label}</span>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    );
+                  })}
+                </SidebarMenu>
+              </SidebarHeader>
+              <SidebarContent className="pt-20">
+              </SidebarContent>
+              <SidebarRail />
+            </Sidebar>
+            <SidebarTrigger />
+            {/* <main className="min-h-screen pt-20">{children}</main> */}
+            {children}
+          </SidebarProvider>
+        </main>
       </body>
     </html>
   );
