@@ -13,7 +13,6 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
 import { HomeIcon } from "lucide-react";
 
 const geistSans = Geist({
@@ -64,8 +63,7 @@ export default function RootLayout({
               </SidebarContent>
               <SidebarRail />
             </Sidebar>
-            <SidebarTrigger />
-            {/* <main className="min-h-screen pt-20">{children}</main> */}
+            {/* <SidebarTrigger /> */}
             {children}
           </SidebarProvider>
         </main>
